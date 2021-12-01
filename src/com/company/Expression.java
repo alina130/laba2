@@ -45,15 +45,7 @@ public class Expression {
     {
         for(char elem: charArr1) {
             if((elem>='0'&&elem<='9')||elem=='.' ) {
-                if (Compliance_check.isEmpty())
-                    Compliance_check.add('$');
-                else {
-                    char p = (char) Compliance_check.peek();
-                    if (p != '$') {
-                        Compliance_check.add('$');
-                    }
-                }
-
+                if (Compliance_check.isEmpty());
             }else
                 if(elem=='-'||elem=='+'||elem=='*'||elem=='/') {
                 if (Compliance_check.isEmpty()) {
@@ -66,12 +58,13 @@ public class Expression {
                     return check;
                 }else Compliance_check.add(elem);
             }else
-            if(elem=='('||elem==')')
+            if(elem=='('||elem==')') {
+                char l = (char) Compliance_check.peek();
+                if (l == '.') {
+                    check = false;
+                    return check;
+                }
                 Compliance_check.add(elem);
-            else
-            {
-                check = false;
-                return check;
             }
         }
 
@@ -117,7 +110,6 @@ public class Expression {
 
         for(char elem: charArr2)
         {
-            //////////////////////////////////////////////
             if((elem>='0'&&elem<='9')||elem=='.' )
                 qeNum.add(elem);
             else {
@@ -130,7 +122,7 @@ public class Expression {
                         }
                     qe.add(temp);
                 }
-                ///////////////////////////////////////////////
+
                 if (elem == '(') {
                     st.push(elem);
                 }
